@@ -58,20 +58,20 @@ public class LogControllerTests {
 	public void testLoginPage() throws Exception {
 		// given
 		// when
-		
+
 		ResultActions resultActions = mockMvc.perform(get("/login"));
 		// then
 		resultActions.andExpect(status().isOk()).andExpect(view().name("login")).andDo(print())
 				.andExpect(content().string(containsString("")));
 
 	}
-	
+
 	@WithMockUser(username = "Arek", roles = { "ADMIN" })
 	@Test
 	public void testLogoutPage() throws Exception {
 		// given
 		// when
-		
+
 		ResultActions resultActions = mockMvc.perform(get("/logout"));
 		// then
 		resultActions.andExpect(status().isFound());

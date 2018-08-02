@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-public class MyExceptionController implements ErrorController{
+public class MyExceptionController implements ErrorController {
 
 	@RequestMapping(value = "/error")
 	public ModelAndView noAccess() {

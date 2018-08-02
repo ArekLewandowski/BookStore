@@ -23,11 +23,14 @@ public class SearchController {
 	@SuppressWarnings("null")
 	@RequestMapping(value = "books/search/findbook", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView searchBook(@RequestParam(required = false) String title,
+	public ModelAndView searchBook(
+			@RequestParam(required = false) String title,
 			@RequestParam(required = false) String authors) {
+		
 		ModelAndView modelAndView = new ModelAndView("findbook");
 		List<BookTo> lista = new ArrayList<>();
 		List<BookTo> books = new ArrayList<>();
+		
 		if (!isEmpty(authors) && !isEmpty(title)) {
 			lista = bookService.findBooksByAuthor(authors);
 			for (BookTo bookTo2 : lista) {
@@ -40,6 +43,7 @@ public class SearchController {
 		} else {
 			books = bookService.findBooksByTitle(title);
 		}
+		
 		if (books.isEmpty()) {
 			ModelAndView noBooksMAV = new ModelAndView("nobook");
 			return noBooksMAV;
@@ -47,7 +51,7 @@ public class SearchController {
 		modelAndView.addObject("bookList", books);
 		return modelAndView;
 	}
-	
+
 	public static boolean isEmpty(final String string) {
 		return string == null || string.trim().isEmpty();
 	}
