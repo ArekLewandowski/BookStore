@@ -81,13 +81,13 @@ public class SearchControllerTests {
 		books.add(book1);
 		books.add(book2);
 		
-		Mockito.when(bookService.findBooksByAuthor("Andrzej Sapkowski")).thenReturn(books);
+		Mockito.when(bookService.findBooksByAuthor(Mockito.anyString())).thenReturn(books);
 		
 		book.add(book1);
-		Mockito.when(bookService.findBooksByTitle("Narrenturm")).thenReturn(book);
+		Mockito.when(bookService.findBooksByTitle(Mockito.anyString())).thenReturn(book);
 
 		// when
-		ResultActions resultActions = mockMvc.perform(get("/books/search/findbook?title=&authors=Andrzej+Sapkowski"));
+		ResultActions resultActions = mockMvc.perform(get("/books/search/findbook?title=&authors=Andrzej"));
 
 		// then
 		resultActions.andExpect(status().isOk()).andExpect(view().name("findbook")).andDo(print())
@@ -116,10 +116,10 @@ public class SearchControllerTests {
 		books.add(book1);
 		books.add(book2);
 		
-		Mockito.when(bookService.findBooksByAuthor("Andrzej Sapkowski")).thenReturn(books);
+		Mockito.when(bookService.findBooksByAuthor(Mockito.anyString())).thenReturn(books);
 		
 		book.add(book1);
-		Mockito.when(bookService.findBooksByTitle("Narrenturm")).thenReturn(book);
+		Mockito.when(bookService.findBooksByTitle(Mockito.anyString())).thenReturn(book);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/books/search/findbook?title=Narrenturm&authors="));
@@ -137,7 +137,7 @@ public class SearchControllerTests {
 
 		// given
 		List<BookTo> books = new ArrayList<>();
-		Mockito.when(bookService.findBooksByAuthor("Andrzej Sapkowski")).thenReturn(books);
+		Mockito.when(bookService.findBooksByAuthor(Mockito.anyString())).thenReturn(books);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(get("/books/search/findbook?title=&authors=Andrzej+Sapkowski"));
