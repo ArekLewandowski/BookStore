@@ -12,7 +12,7 @@ import pl.jstk.service.BookService;
 import pl.jstk.to.BookTo;
 
 @RestController
-public class booksController {
+public class BooksController {
 
 	@Autowired
 	private BookService bookService;
@@ -54,7 +54,7 @@ public class booksController {
 	}
 
 	@RequestMapping(value = "/greeting", method = RequestMethod.POST)
-	public ModelAndView addBook(@ModelAttribute("newBook") BookTo bookTo) {
+	public ModelAndView greeting(@ModelAttribute("newBook") BookTo bookTo) {
 		ModelAndView modelAndView = new ModelAndView("greeting");
 		bookService.saveBook(bookTo);
 		return modelAndView;
