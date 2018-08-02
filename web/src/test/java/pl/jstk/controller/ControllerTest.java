@@ -215,5 +215,14 @@ public class ControllerTest {
 				.andExpect(content().string(containsString("")));
 
 	}
+	
+	@WithMockUser(username = "Arek", roles = { "ADMIN" })
+	@Test
+    public void testSearchPagePost() throws Exception {
+        // when
+        ResultActions resultActions = mockMvc.perform(post("/books/search"));
+        // then
+        resultActions.andExpect(status().isMethodNotAllowed());
+    }
 
 }
